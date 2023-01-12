@@ -19,7 +19,7 @@ This file may change as time goes on, and as goals are achieved/wanted.
 
 ## Technical Requirements
 - The website will be written in Python 3 with Flask 2.2.2
-- The app will use PostgreSQL 13 or MySQL 8. 
+- The app will use PostgreSQL 14 or MySQL 8. 
 - The website will be hosted on Heroku along with the database.
 - Password generation logic will be written in Python 3.
 - Website logic will be written in JavaScript ES6+ with JQuery 3.6.3.
