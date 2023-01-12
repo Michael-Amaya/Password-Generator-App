@@ -24,3 +24,24 @@ This file may change as time goes on, and as goals are achieved/wanted.
 - Password generation logic will be written in Python 3.
 - Website logic will be written in JavaScript ES6+ with JQuery 3.6.3.
 - The browser extension will be written in JavaScript ES6+.
+
+## Standalone Application Logic
+- The application sets the default password length to 8
+    - Allows for change with the usage of an input box
+    - Click a button to confirm change
+- The application allows for the user to toggle specific charcters to put into their password 
+    - Green slider button means the character can be included
+    - Red slider button means the character is excluded
+- The application allows for the user to toggle between upper and lowercase characters
+    - Green slider on uppercase means only uppercase
+    - Green slider on lowercase means only lowercase
+    - Green slider on both means both are included
+    - Red slider on uppercase means no uppercase
+    - Red slider on lowercase means no lowercase
+    - Red slider on both means no letters
+- The application allows for the user to toggle numbers
+    - Green slider on numbers means numbers are included
+    - Red slider on numbers means numbers are excluded
+- The application creates the password
+    - Use a button to create the password
+
