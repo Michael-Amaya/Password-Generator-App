@@ -9,3 +9,4 @@ pycodestyle==2.10.0
 pyflakes==3.0.1
 Werkzeug==2.2.2
 zipp==3.11.0
+psycopg2==2.9.5
