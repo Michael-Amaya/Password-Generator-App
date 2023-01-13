@@ -1,21 +1,16 @@
-from flask import Flask, render_template
+import json
+from flask import Flask, render_template, request
+from login_register import login_register
+
 
 app = Flask(__name__)
-
-
-@app.route("/users/login")
-def login_page():
-    return render_template('login.html')
-
-
-@app.route("/users/register")
-def registration_page():
-    return render_template('register.html')
+app.register_blueprint(login_register)
 
 
 @app.route("/")
 def app_main():
-    return 'Hello world!'
+    messages = json.loads(request.args.get('messages'))
+    return render_template('index.html', messages=messages)
 
 
 if __name__ == '__main__':
