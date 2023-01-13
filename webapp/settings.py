@@ -17,4 +17,6 @@ if SETTINGS is None:
             'database_name': 'pwd_test',
             'database_user': 'myuser',
             'database_password': 'password',
+            # Password pepper is randomly generated
+            'password_pepper': 'N[h@8q$GLeU3r=;cVw2CSRX(pSwFmm',
         }
