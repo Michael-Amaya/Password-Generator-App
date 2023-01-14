@@ -1,19 +1,6 @@
-import os
-import sys
-import psycopg2
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from settings import SETTINGS
+from database_connection import CONNECTION as connection, CURSOR as cursor
 
 
-connection = psycopg2.connect(database=SETTINGS['database_name'],
-                              host=SETTINGS['database_host'],
-                              user=SETTINGS['database_user'],
-                              password=SETTINGS['database_password'],
-                              port=SETTINGS['database_port'])
-
-cursor = connection.cursor()
 queries = [
     '''
     CREATE TABLE IF NOT EXISTS users (
