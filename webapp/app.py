@@ -9,7 +9,9 @@ app.register_blueprint(login_register)
 
 @app.route("/")
 def app_main():
-    messages = json.loads(request.args.get('messages'))
+    messages = request.args.get('messages', None)
+    if messages:
+        messages = json.loads(messages)
     return render_template('index.html', messages=messages)
 
 

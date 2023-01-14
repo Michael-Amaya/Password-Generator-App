@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container mt-3">
-        {% if messages is defined %}
+        {% if messages is defined and messages is not none %}
         <div class="alert alert-{{ messages['type'] }} alert-dismissible fade show">
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             <strong>{{ messages['heading'] }}</strong>: {{ messages['message'] }}
