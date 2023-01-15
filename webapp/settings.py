@@ -19,4 +19,5 @@ if SETTINGS is None:
             'database_password': 'password',
             # Password pepper is randomly generated
             'password_pepper': 'N[h@8q$GLeU3r=;cVw2CSRX(pSwFmm',
+            'pin_pepper': 'E9C!+DUu+Q}T-Qnf,Wu96_:WefvA$c'
         }
