@@ -9,7 +9,7 @@ queries = [
         birthday date NOT NULL,
         email varchar(100) UNIQUE NOT NULL,
         password varchar(255) NOT NULL,
-        pin VARCHAR(15) NOT NULL,
+        pin VARCHAR(255) NOT NULL,
         created_on TIMESTAMP NOT NULL DEFAULT NOW(),
         last_login TIMESTAMP NOT NULL DEFAULT NOW()
     );
