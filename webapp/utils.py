@@ -18,3 +18,5 @@ def login_required(status=None):
 
                 return redirect(url_for('login_register.login_page',
                                         messages=json.dumps(messages)))
+        return wrapper
+    return login_decorator
