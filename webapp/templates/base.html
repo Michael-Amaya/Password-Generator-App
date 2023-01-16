@@ -18,7 +18,8 @@
         </div>
         {% endif %}
         {% if session['email'] %}
-        <p>Welcome, {{ session['email'] }}! <a href="/users/logout">Logout</a></p>
+        <p><a href="/">Home</a></p>
+        <p>Welcome, {{ session['name'] }}! <a href="/users/logout">Logout</a></p>
         {% endif %}
         {% block body %}
         {% endblock %}
