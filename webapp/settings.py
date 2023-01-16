@@ -9,7 +9,7 @@ if SETTINGS is None:
     try:
         with open('settings.json', encoding='UTF-8') as settings_file:
             SETTINGS = json.load(settings_file)
-    except Exception:
+    except FileNotFoundError:
         # Default config
         SETTINGS = {
             'database_host': 'localhost',
