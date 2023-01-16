@@ -1,7 +1,10 @@
 import json
 from flask import Flask, render_template, request
 from flask_session import Session
+
+# Webpage import
 from login_register import login_register
+from password_management import password_management
 
 
 app = Flask(__name__)
@@ -13,6 +16,7 @@ app.config['SESSION_TYPE'] = "filesystem"
 app.secret_key = '=VMJ@/ZP%7[(.((ZM(*%iu2APbY9w*'
 
 app.register_blueprint(login_register)
+app.register_blueprint(password_management)
 Session(app)
 
 
