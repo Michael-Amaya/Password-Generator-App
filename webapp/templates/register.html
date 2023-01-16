@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/register.css')}}">
+{% endblock %}
+{% block body %}
+    <h1>Please fill in all fields</h1>
+    <div>
+        <form action="./register_main" method="POST">
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" name="name" id="name" required/></td>
+                </tr>
+                <tr>
+                    <td>Birthday:</td>
+                    <td><input type="date" name="birthday" id="birthday" required/></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="email" name="email" id="email" required /></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="password" id="password" required /></td>
+                </tr>
+                <tr>
+                    <td>Password Again:</td>
+                    <td><input type="password" name="password_again" id="password_again" required /></td>
+                </tr>
+                <tr>
+                    <td>Pin:</td>
+                    <td><input type="password" name="pin" id="pin" required /></td>
+                </tr>
+                <tr>
+                    <td class="submit-column" colspan="2"><button name="submit" id="submit">Register!</button></td>
+                </tr>
+            </table>
+            <p class="text-context">Already registered? <a href="./login">Login now!</a></p>
+        </form>
+    </div>
+{% endblock %}
