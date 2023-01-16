@@ -1,3 +1,4 @@
 flaskapp/
 __pycache__
 flask_session
+.DS_Store
