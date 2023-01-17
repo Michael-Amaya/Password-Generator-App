@@ -19,13 +19,24 @@ queries = [
         password_id BIGSERIAL PRIMARY KEY,
         user_id BIGINT NOT NULL,
         name VARCHAR(100) NOT NULL,
-        password VARCHAR(255) NOT NULL,
+        password BYTEA NOT NULL,
         created_on TIMESTAMP NOT NULL DEFAULT NOW(),
         last_viewed TIMESTAMP NOT NULL DEFAULT NOW(),
         last_copied TIMESTAMP NOT NULL DEFAULT NOW(),
         CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
     );
+    ''',
     '''
+    CREATE TABLE IF NOT EXISTS password_aes (
+        aes_id BIGSERIAL PRIMARY KEY,
+        password_id BIGINT NOT NULL,
+        key BYTEA NOT NULL,
+        nonce BYTEA NOT NULL,
+        tag BYTEA NOT NULL,
+        CONSTRAINT fk_password_id FOREIGN KEY (password_id)
+        REFERENCES user_passwords(password_id)
+    );
+    ''',
 ]
 
 for query in queries:
