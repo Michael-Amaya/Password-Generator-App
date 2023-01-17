@@ -1,6 +1,7 @@
 import json
 from flask import Flask, render_template, request
 from flask_session import Session
+from utils import message_capable
 
 # Webpage import
 from login_register import login_register
@@ -21,10 +22,9 @@ Session(app)
 
 
 @app.route("/")
-def app_main():
-    messages = request.args.get('messages', None)
-    if messages:
-        messages = json.loads(messages)
+@message_capable()
+def app_main(**kwargs):
+    messages = kwargs.get('messages')
     return render_template('index.html', messages=messages)
 
 

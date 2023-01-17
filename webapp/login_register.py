@@ -5,6 +5,7 @@ from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError
 from database.database_users import create_user, get_user_data, \
     change_user_password
+from utils import message_capable
 from settings import SETTINGS
 
 
@@ -122,16 +123,14 @@ def perform_logout():
 
 
 @login_register.route('/login')
-def login_page():
-    messages = request.args.get('messages', None)
-    if messages:
-        messages = json.loads(messages)
+@message_capable()
+def login_page(**kwargs):
+    messages = kwargs.get('messages')
     return render_template('login.html', messages=messages)
 
 
 @login_register.route('/register')
-def registration_page():
-    messages = request.args.get('messages', None)
-    if messages:
-        messages = json.loads(messages)
+@message_capable()
+def registration_page(**kwargs):
+    messages = kwargs.get('messages')
     return render_template('register.html', messages=messages)
