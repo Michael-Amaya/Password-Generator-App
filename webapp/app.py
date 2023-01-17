@@ -15,8 +15,8 @@ app.config['SESSION_TYPE'] = "filesystem"
 # Secret key needed for cookie hashing
 app.secret_key = '=VMJ@/ZP%7[(.((ZM(*%iu2APbY9w*'
 
-app.register_blueprint(login_register)
-app.register_blueprint(password_management)
+app.register_blueprint(login_register, url_prefix='/users')
+app.register_blueprint(password_management, url_prefix='/passwords')
 Session(app)
 
 
