@@ -30,3 +30,31 @@ def get_user_passwords(email):
         user_passwords = None
 
     return user_passwords
+
+
+def insert_user_password(email, name, password, key, nonce, tag):
+    prepared_query1 = 'SELECT user_id from users where email = %s;'
+    prepared_tuple1 = (email,)
+
+    cursor.execute(prepared_query1, prepared_tuple1)
+    record_found = cursor.fetchone()
+    if record_found is None:
+        return False
+
+    user_id = record_found[0]
+
+    prepared_query2 = '''INSERT INTO user_passwords (user_id, name, password)
+                         VALUES (%s, %s, %s) RETURNING password_id;
+                      '''
+    prepared_tuple2 = (user_id, name, password)
+    prepared_query3 = '''INSERT INTO password_aes (password_id, key, nonce,
+                         tag) VALUES (%s, %s, %s, %s);
+                      '''
+    prepared_tuple3 = [0, key, nonce, tag]
+    cursor.execute(prepared_query2, prepared_tuple2)
+    password_id_inserted = cursor.fetchone()[0]
+    prepared_tuple3[0] = password_id_inserted
+    cursor.execute(prepared_query3, tuple(prepared_tuple3))
+
+    connection.commit()
+    return True
