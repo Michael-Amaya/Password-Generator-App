@@ -19,7 +19,7 @@
         {% endif %}
         {% if session['email'] %}
         <p><a href="/">Home</a></p>
-        <p>Welcome, {{ session['name'] }}! <a href="/users/logout">Logout</a></p>
+        <p>Welcome, {{ session['name'] }}! <a href="{{ url_for('login_register.perform_logout') }}">Logout</a></p>
         {% endif %}
         {% block body %}
         {% endblock %}
