@@ -20,3 +20,10 @@ def login_required(status=None):
                                         messages=json.dumps(messages)))
         return wrapper
     return login_decorator
+
+
+# Exception to be used when getting data from user and another user's data
+# is ever detected. There should probably be some logging for this error
+# somewhere
+class UserDifferenceException(Exception):
+    pass
