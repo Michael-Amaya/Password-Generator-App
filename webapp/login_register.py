@@ -47,6 +47,7 @@ def perform_login():
         session['email'] = user_record['email']
         session['name'] = user_record['name']
         session['birthday'] = user_record['birthday']
+        session['user_id'] = user_record['user_id']
 
         messages = {
             'message': 'You have successfully logged in!',
@@ -105,6 +106,7 @@ def perform_logout():
         session.pop('email')
         session.pop('name')
         session.pop('birthday')
+        session.pop('user_id')
         messages = {
             'message': 'You have been logged out!',
             'heading': 'Success',
