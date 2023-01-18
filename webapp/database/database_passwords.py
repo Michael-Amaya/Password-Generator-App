@@ -58,3 +58,30 @@ def insert_user_password(email, name, password, key, nonce, tag):
 
     connection.commit()
     return True
+
+
+def get_individual_user_password(user_id, password_id):
+    prepared_query = '''SELECT user_passwords.password_id, 
+                        user_passwords.user_id, user_passwords.password,
+                        password_aes.key, password_aes.nonce, password_aes.tag
+                        FROM user_passwords LEFT JOIN password_aes ON 
+                        user_passwords.password_id = password_aes.password_id
+                        WHERE user_passwords.user_id = %s AND
+                        user_passwords.password_id = %s;
+                     '''
+    prepared_tuple = (user_id, password_id)
+    cursor.execute(prepared_query, prepared_tuple)
+    records_found = cursor.fetchone()
+    if records_found:
+        password_info = {
+            'password_id': records_found[0],
+            'user_id': records_found[1],
+            'password': records_found[2],
+            'key': records_found[3],
+            'nonce': records_found[4],
+            'tag': records_found[5]
+        }
+    else:
+        password_info = None
+
+    return password_info
