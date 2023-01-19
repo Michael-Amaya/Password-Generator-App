@@ -5,6 +5,7 @@ from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError
 from database.database_users import create_user, get_user_data, \
     change_user_password
+from utils import message_capable
 from settings import SETTINGS
 
 
@@ -15,7 +16,7 @@ login_register = Blueprint('login_register', __name__,
 login_error_message = 'There was an issue logging in!'
 
 
-@login_register.route('/users/login_main', methods=['POST'])
+@login_register.route('/login_main', methods=['POST'])
 def perform_login():
     user_data = request.form
     user_record = get_user_data(user_data['email'])
@@ -46,6 +47,7 @@ def perform_login():
         session['email'] = user_record['email']
         session['name'] = user_record['name']
         session['birthday'] = user_record['birthday']
+        session['user_id'] = user_record['user_id']
 
         messages = {
             'message': 'You have successfully logged in!',
@@ -65,7 +67,7 @@ def perform_login():
                         messages=json.dumps(messages)))
 
 
-@login_register.route('/users/register_main', methods=['POST'])
+@login_register.route('/register_main', methods=['POST'])
 def perform_register():
     user_data = request.form
     if user_data['password'] != user_data['password_again']:
@@ -98,12 +100,13 @@ def perform_register():
     return redirect(url_for('app_main', messages=json.dumps(message)))
 
 
-@login_register.route('/users/logout')
+@login_register.route('/logout')
 def perform_logout():
     if session.get('email'):
         session.pop('email')
         session.pop('name')
         session.pop('birthday')
+        session.pop('user_id')
         messages = {
             'message': 'You have been logged out!',
             'heading': 'Success',
@@ -121,17 +124,15 @@ def perform_logout():
         return redirect(url_for('app_main', messages=json.dumps(messages)))
 
 
-@login_register.route('/users/login')
-def login_page():
-    messages = request.args.get('messages', None)
-    if messages:
-        messages = json.loads(messages)
+@login_register.route('/login')
+@message_capable()
+def login_page(**kwargs):
+    messages = kwargs.get('messages')
     return render_template('login.html', messages=messages)
 
 
-@login_register.route('/users/register')
-def registration_page():
-    messages = request.args.get('messages', None)
-    if messages:
-        messages = json.loads(messages)
+@login_register.route('/register')
+@message_capable()
+def registration_page(**kwargs):
+    messages = kwargs.get('messages')
     return render_template('register.html', messages=messages)
