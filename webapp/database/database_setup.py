@@ -5,13 +5,36 @@ queries = [
     '''
     CREATE TABLE IF NOT EXISTS users (
         user_id BIGSERIAL PRIMARY KEY,
-        name varchar(50) NOT NULL,
-        birthday date NOT NULL,
-        email varchar(100) UNIQUE NOT NULL,
-        password varchar(255) NOT NULL,
+        name VARCHAR(50) NOT NULL,
+        birthday DATE NOT NULL,
+        email VARCHAR(100) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL,
         pin VARCHAR(255) NOT NULL,
         created_on TIMESTAMP NOT NULL DEFAULT NOW(),
         last_login TIMESTAMP NOT NULL DEFAULT NOW()
+    );
+    ''',
+    '''
+    CREATE TABLE IF NOT EXISTS user_passwords (
+        password_id BIGSERIAL PRIMARY KEY,
+        user_id BIGINT NOT NULL,
+        name VARCHAR(100) NOT NULL,
+        password BYTEA NOT NULL,
+        created_on TIMESTAMP NOT NULL DEFAULT NOW(),
+        last_viewed TIMESTAMP NOT NULL DEFAULT NOW(),
+        last_copied TIMESTAMP NOT NULL DEFAULT NOW(),
+        CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
+    );
+    ''',
+    '''
+    CREATE TABLE IF NOT EXISTS password_aes (
+        aes_id BIGSERIAL PRIMARY KEY,
+        password_id BIGINT NOT NULL,
+        key BYTEA NOT NULL,
+        nonce BYTEA NOT NULL,
+        tag BYTEA NOT NULL,
+        CONSTRAINT fk_password_id FOREIGN KEY (password_id)
+        REFERENCES user_passwords(password_id)
     );
     ''',
 ]

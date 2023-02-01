@@ -15,3 +15,11 @@
   <p>Current user? Please <a href="./users/login">Login now!</a></p>
 </div>
 {% endblock %}
+{% block body %}
+    <h1>Welcome to Password Manager!</h1>
+    <div>
+        <p>Are you new? Please <a href="{{ url_for('login_register.registration_page') }}">Register now!</a></p>
+        <p>Current user? Please <a href="{{ url_for('login_register.login_page') }}">Login now!</a></p>
+        <p>Do you want to <a href="{{ url_for('password_management.password_main') }}">Manage your passwords</a>?</p>
+    </div>
+{% endblock %}
