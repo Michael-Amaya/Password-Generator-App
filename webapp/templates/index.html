@@ -1,7 +1,19 @@
-{% extends 'base.html' %}
-{% block title %}Welcome{% endblock %}
-{% block header %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
+{% extends 'base.html' %} {% block title %}Welcome{% endblock %} {% block header
+%}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/global.css')}}"
+/>
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/index.css')}}"
+/>
+{% endblock %} {% block body %}
+<h1>Welcome to Password Manager!</h1>
+<div>
+  <p>Are you new? Please <a href="./users/register">Register now!</a></p>
+  <p>Current user? Please <a href="./users/login">Login now!</a></p>
+</div>
 {% endblock %}
 {% block body %}
     <h1>Welcome to Password Manager!</h1>

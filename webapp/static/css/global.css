@@ -1,0 +1,11 @@
+html {
+  filter: invert(1);
+}
+
+body {
+  display: grid;
+  height: 100vh;
+  max-width: max-content;
+  margin: 0 auto;
+  place-items: center;
+}
